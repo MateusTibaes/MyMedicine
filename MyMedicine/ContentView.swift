@@ -1,24 +1,38 @@
-//
-//  ContentView.swift
-//  MyMedicine
-//
-//  Created by Mateus Tibães   on 25/09/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab = 0
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView(selection: $selectedTab) {
+            MedicineListView()
+                .tabItem {
+                    Image(systemName: "pills")
+                    Text("Meus Remédios")
+                }
+                .tag(0)
+            
+            PharmacyStoreView()
+                .tabItem {
+                    Image(systemName: "bag")
+                    Text("Farmácia")
+                }
+                .tag(1)
+            
+            HistoryView()
+                .tabItem {
+                    Image(systemName: "clock")
+                    Text("Histórico")
+                }
+                .tag(2)
+            
+            ProfileView()
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("Perfil")
+                }
+                .tag(3)
         }
-        .padding()
+        .accentColor(.blue)
     }
-}
-
-#Preview {
-    ContentView()
-}
+} 
